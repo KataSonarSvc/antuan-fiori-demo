@@ -1,0 +1,477 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+>
+	<!-- Omit Deleted -->
+	<smartfilterbar:ControlConfiguration
+		id="idSFHOmitDeleted"
+		key="OmitDeleted"
+		index="1"
+		label="{i18n>OmitDeleted}"
+		groupId="_BASIC"
+	>
+		<smartfilterbar:customControl>
+			<Switch
+				id="idHOmitDeleted"
+				type="AcceptReject"
+				state="true"
+				change="handleChangeOmitDeleted"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Vendor -->
+	<smartfilterbar:ControlConfiguration
+		id="idSFHVendorNumber"
+		key="CustomSupplier"
+		index="10"
+		label="{/#ZC_PosPurchaseRequisitionLRType/VendorNumber/@sap:label}"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idHVendorNumber"
+				showValueHelp="true"
+				showSuggestion="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				suggest="handleOnSuggest"
+				maxSuggestionWidth="1100px"
+				autocomplete="false"
+				suggestionItemSelected="handleOnSelectSuggestion"
+				suggestionRows="{data>/SuggestionItems}"
+			>
+				<suggestionColumns>
+					<Column
+						hAlign="Left"
+						width="24px"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text=""/>
+					</Column>
+					<Column
+						width="90px"
+						hAlign="Left"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text="{erp>/#ZC_PurchaseRequisitionHeaderType/VendorNumber/@sap:label}"/>
+					</Column>
+					<Column
+						width="220px"
+						hAlign="Left"
+						popinDisplay="Inline"
+						demandPopin="true"
+						minScreenWidth="Tablet"
+					>
+						<Label text="{erp>/#ZC_PurchaseRequisitionHeaderType/VendorName/@sap:label}"/>
+					</Column>
+					<Column
+						hAlign="Left"
+						width="115px"
+						popinDisplay="Inline"
+						minScreenWidth="Tablet"
+					>
+						<Label text="{erp>/#ZC_PurchaseRequisitionHeaderType/VatNumber/@sap:label}"/>
+					</Column>
+					<Column
+						width="115px"
+						hAlign="Left"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text="{erp>/#ZC_PurchaseRequisitionHeaderType/VatNumber2/@sap:label}"/>
+					</Column>
+					<Column
+						width="90px"
+						hAlign="Center"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text="{erp>/#ZC_PurchaseRequisitionHeaderType/Locked/@sap:label}"/>
+					</Column>
+					<Column
+						width="150px"
+						hAlign="Left"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text="{erp>/#ZC_PosPurchaseRequisitionType/City/@sap:label}"/>
+					</Column>
+					<Column
+						width="100px"
+						hAlign="Left"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text="{erp>/#ZC_PosPurchaseRequisitionType/PostalCode/@sap:label}"/>
+					</Column>
+				</suggestionColumns>
+				<suggestionRows>
+					<ColumnListItem>
+						<core:Icon
+							src="{data>IconRelevance}"
+							class="size2"
+							color="{data>Color}"
+						>
+							<core:layoutData>
+								<FlexItemData growFactor="1"/>
+							</core:layoutData>
+						</core:Icon>
+						<Label text="{data>FieldName}"/>
+						<Label text="{data>FieldDescription}"/>
+						<Label text="{data>AdditionalField1}"/>
+						<Label text="{data>AdditionalField2}"/>
+						<core:Icon
+							src="{
+								path: 'data>AdditionalField3',
+								formatter: '._formatLocked'
+							}"
+							class="size2"
+							color="red"
+						>
+							<core:layoutData>
+								<FlexItemData growFactor="1"/>
+							</core:layoutData>
+						</core:Icon>
+						<Label text="{data>AdditionalField4}"/>
+						<Label text="{data>AdditionalField5}"/>
+					</ColumnListItem>
+				</suggestionRows>
+				<layoutData>
+					<layout:GridData span="XL4 L5 M5 S4"/>
+				</layoutData>
+			</MultiInput>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Status -->
+	<smartfilterbar:ControlConfiguration
+		id="idSFHStatusName"
+		key="CustomStatusName"
+		index="10"
+		label="{i18n>StatusName}"
+		groupId="_BASIC"
+	>
+		<smartfilterbar:customControl>
+			<MultiComboBox
+				id="idHStatusName"
+				maxWidth="650px"
+				items="{
+					path: 'StatusModel>/results',
+					sorter: {
+						path: 'Key'
+					}
+				}"
+			>
+				<core:Item
+					key="{StatusModel>FieldName}"
+					text="{StatusModel>FieldDescription}"
+				/>
+			</MultiComboBox>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Plant -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomPlant"
+		index="310"
+		label="{/#ZC_PosPurchaseOrderLRType/Plant/@sap:label}"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idPPlant"
+				showValueHelp="true"
+				showSuggestion="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				suggest="handleOnSuggest"
+				maxSuggestionWidth="300px"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Material -->
+	<smartfilterbar:ControlConfiguration
+		id="idSFHMaterial"
+		key="CustomMaterial"
+		index="20"
+		label="{/#ZC_PosPurchaseRequisitionLRType/Material/@sap:label}"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idPMaterial"
+				showValueHelp="true"
+				showSuggestion="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				suggest="handleOnSuggest"
+				maxSuggestionWidth="900px"
+				autocomplete="false"
+				suggestionItemSelected="handleOnSelectSuggestion"
+				suggestionRows="{data>/SuggestionItems}"
+			>
+				<suggestionColumns>
+					<Column
+						hAlign="Left"
+						width="40px"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text=""/>
+					</Column>
+					<Column
+						width="100px"
+						hAlign="Left"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text="{erp>/#ZC_PosPurchaseRequisitionType/Material/@sap:label}"/>
+					</Column>
+					<Column
+						width="200px"
+						hAlign="Left"
+						popinDisplay="Inline"
+						demandPopin="true"
+						minScreenWidth="Tablet"
+					>
+						<Label text="{erp>/#ZC_PosPurchaseRequisitionType/TextoMaterial/@sap:label}"/>
+					</Column>
+					<Column
+						hAlign="Center"
+						width="100px"
+						popinDisplay="Inline"
+						minScreenWidth="Tablet"
+					>
+						<Label text="{erp>/#ZC_PosPurchaseRequisitionType/MaterialType/@sap:label}"/>
+					</Column>
+					<Column
+						width="120px"
+						hAlign="Center"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text="{erp>/#ZC_PosPurchaseRequisitionType/MaterialGroup/@sap:label}"/>
+					</Column>
+					<!-- Begin 22.04.2022 Rubén Rollano - Show deleted materials
+							Roll-out Arteris -->
+					<Column
+						width="90px"
+						hAlign="Center"
+						popinDisplay="Inline"
+						demandPopin="true"
+					>
+						<Label text="{erp>/#ZC_PosPurchaseRequisitionType/MaterialDeleteIndicator/@sap:label}"/>
+					</Column>
+					<!-- End 22.04.2022 Rubén Rollano - Show deleted materials -->
+				</suggestionColumns>
+				<suggestionRows>
+					<ColumnListItem>
+						<core:Icon
+							src="{data>IconRelevance}"
+							class="size2"
+							color="{data>Color}"
+						>
+							<core:layoutData>
+								<FlexItemData growFactor="1"/>
+							</core:layoutData>
+						</core:Icon>
+						<Label text="{data>FieldName}"/>
+						<Label text="{data>FieldDescription}"/>
+						<Label text="{data>AdditionalField1}"/>
+						<Label text="{data>AdditionalField2}"/>
+						<!-- Begin 22.04.2022 Rubén Rollano - Show deleted materials
+							Roll-out Arteris -->
+						<!-- <Label text="{data>AdditionalField3}"/> -->
+						<core:Icon
+							src="{
+								path: 'data>AdditionalField3',
+								formatter: '.IconDeleted'
+							}"
+							class="size2"
+							color="#DB0E36"
+						>
+							<core:layoutData>
+								<FlexItemData growFactor="1"/>
+							</core:layoutData>
+						</core:Icon>
+						<!-- End 22.04.2022 Rubén Rollano - Show deleted materials  -->
+					</ColumnListItem>
+				</suggestionRows>
+				<layoutData>
+					<layout:GridData span="XL3 L4 M4 S4"/>
+				</layoutData>
+			</MultiInput>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Account Assignment Category -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomAccountAssignmentCategory"
+		index="200"
+		label="{/#ZC_PosPurchaseRequisitionLRType/AccountAssignmentCategory/@sap:label}"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idPAccountAssignmentCategory"
+				showValueHelp="true"
+				showSuggestion="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				suggest="handleOnSuggest"
+				maxSuggestionWidth="400px"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Company Code -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomCompanyCode"
+		index="210"
+		label="{/#ZC_PosPurchaseRequisitionLRType/CompanyCode/@sap:label}"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idHCompanyCode"
+				showValueHelp="true"
+				showSuggestion="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				suggest="handleOnSuggest"
+				maxSuggestionWidth="400px"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Currency -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomCurrency"
+		index="220"
+		label="{/#ZC_PosPurchaseRequisitionLRType/Currency/@sap:label}"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idHCurrency"
+				showValueHelp="true"
+				showSuggestion="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				suggest="handleOnSuggest"
+				maxSuggestionWidth="400px"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Cost Center -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomCostCenter"
+		index="230"
+		label="{/#ZC_PosPurchaseRequisitionLRType/CostCenter/@sap:label}"
+		visibleInAdvancedArea="true"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idPCostCenter"
+				showValueHelp="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				maxSuggestionWidth="400px"
+				showSuggestion="true"
+				suggest="handleOnSuggest"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- WBS Elements -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomWBSElement"
+		index="240"
+		label="{/#ZC_PosPurchaseRequisitionLRType/WBSElement/@sap:label}"
+		groupId="_BASIC"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idPWBSElement"
+				showValueHelp="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				maxSuggestionWidth="400px"
+				showSuggestion="true"
+				suggest="handleOnSuggest"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Customer Order Number -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomOrderNumber"
+		index="250"
+		label="{/#ZC_PosPurchaseRequisitionLRType/OrderNumber/@sap:label}"
+		groupId="_BASIC"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idPOrderNumber"
+				showValueHelp="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				maxSuggestionWidth="400px"
+				showSuggestion="true"
+				suggest="handleOnSuggest"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Localization -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomLocalization"
+		index="250"
+		label="{/#ZC_PosPurchaseRequisitionType/Localization/@sap:label}"
+		groupId="_BASIC"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idPLocalization"
+				showValueHelp="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				maxSuggestionWidth="400px"
+				showSuggestion="true"
+				suggest="handleOnSuggest"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Activity -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomActivity"
+		index="250"
+		label="{/#ZC_PosPurchaseRequisitionLRType/Activity/@sap:label}"
+		groupId="_BASIC"
+	>
+		<smartfilterbar:customControl>
+			<MultiInput
+				id="idPActivity"
+				showValueHelp="true"
+				valueHelpRequest="handleOnValueHelpRequestPressed"
+				maxSuggestionWidth="400px"
+				showSuggestion="true"
+				suggest="handleOnSuggest"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Begin 19.07.2022 Rubén Rollano - Dates in Fiori apps -->
+	<!-- PO Date -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomPODate"
+		conditionType="sap.ui.comp.config.condition.DateRangeType"
+		filterType="interval"
+		index="205"
+		label="{/#ZC_PosPurchaseOrderLRType/PODate/@sap:label}"
+		groupId="_BASIC"
+	>
+		<smartfilterbar:customControl>
+			<DateRangeSelection
+				id="idPPODate"
+				change="handleChange"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- Item Delivery Date -->
+	<smartfilterbar:ControlConfiguration
+		key="CustomItemDeliveryDate"
+		conditionType="sap.ui.comp.config.condition.DateRangeType"
+		filterType="interval"
+		label="{/#ZC_PosPurchaseRequisitionLRType/ItemDeliveryDate/@sap:label}"
+		index="350"
+		groupId="_BASIC"
+	>
+		<smartfilterbar:customControl>
+			<DateRangeSelection
+				id="idPItemDeliveryDate"
+				change="handleChange"
+			/>
+		</smartfilterbar:customControl>
+	</smartfilterbar:ControlConfiguration>
+	<!-- End 19.07.2022 Rubén Rollano - Dates in Fiori apps -->
+</core:FragmentDefinition>

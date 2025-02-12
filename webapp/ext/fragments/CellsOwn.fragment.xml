@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+>
+	<Link
+		text="{PONumberWithPos}"
+		press="handleOnDisplayPONumberWithPosPressed"
+	/>
+
+	<!-- Begin 4.7.2024 Rubén Rollano - Aditive PO
+	Roll-out Argentina -->
+	<Link
+		text="{Aditive}"
+		press="handleOnDisplayPONumberWithPosPressed"
+	/>
+	<!-- End 4.7.2024 Rubén Rollano - Aditive PO -->
+	 
+</core:FragmentDefinition>

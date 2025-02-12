@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+
+	<Column id="ExtensionWizard::ColumnBreakout1" hAlign="Center" >
+		<Text text="{erp>/#ZC_PosPurchaseOrderLRType/PONumberWithPos/@sap:label}"></Text>
+		<customData>
+			<core:CustomData key="p13nData" value='\{"columnKey": "PONumberWithPos", "columnIndex" : "1"}'/>
+		</customData>
+	</Column>
+
+	<!-- Begin 4.7.2024 Rubén Rollano - Aditive PO
+	Roll-out Argentina -->
+	<Column id="ExtensionWizard::ColumnBreakout2" hAlign="Center" >
+		<Text text="{erp>/#ZC_PosPurchaseOrderLRType/Aditive/@sap:label}"></Text>
+		<customData>
+			<core:CustomData key="p13nData" value='\{"columnKey": "Aditive", "columnIndex" : "99"}'/>
+		</customData>
+	</Column>
+	<!-- End 4.7.2024 Rubén Rollano - Aditive PO -->
+	
+</core:FragmentDefinition>

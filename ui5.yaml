@@ -1,0 +1,26 @@
+specVersion: "1.0"
+metadata:
+  name: com.abertis.mm.zpurchaseorderlr
+type: application
+ui5Theme: sap_fiori_3
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: true
+        backend:
+          - path: /sap
+            destination: https://bcnasapcid01.ad.intranet.local/
+            url: https://bcnasapcid01.ad.intranet.local/
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+          version: ""
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
