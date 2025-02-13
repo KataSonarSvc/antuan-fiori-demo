@@ -1,1 +1,1 @@
-var images_folder= "images"
+let images_folder= "images"
