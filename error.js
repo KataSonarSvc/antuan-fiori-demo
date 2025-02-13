@@ -10,3 +10,12 @@ let pruebas = {
     mobile_pad: "grey_pad.JPG",
 }
 
+//read input parameters
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+let game = urlParams.get('game') 
+if (!game){
+    game = ""
+}
+//load game variable
+var games_data = eval(game)
