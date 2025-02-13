@@ -1,5 +1,5 @@
-var images_folder= "images"
-var pruebas = {
+let images_folder= "images"
+let pruebas = {
     game_name: "Pruebas",
     breadcrumb_name: "Pruebas",
     breadcrumb_level1: breadcrumb_level1,
