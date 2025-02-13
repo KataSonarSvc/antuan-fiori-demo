@@ -1,5 +1,5 @@
-let images_folder= "images"
-let pruebas = {
+var images_folder= "images"
+var pruebas = {
     game_name: "Pruebas",
     breadcrumb_name: "Pruebas",
     breadcrumb_level1: breadcrumb_level1,
@@ -10,3 +10,11 @@ let pruebas = {
     mobile_pad: "grey_pad.JPG",
 }
 
+    //read input parameters
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let game = urlParams.get('game') 
+    if (!game){
+        game = ""
+    }
+    //load game variable
